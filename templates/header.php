@@ -1,3 +1,6 @@
+<?php session_start();
+$firstname=explode(" ", $_SESSION["name"]);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,7 +52,7 @@
         list-style: none;
         display: flex;
         justify-content: end;
-        max-width: 300px;
+        max-width: 400px;
         width: 100%;
     }
 
@@ -332,6 +335,7 @@ section.top-sellers{
     section.top-sellers>ul.products>li{
         width: 290px;
         max-width: 500px;
+        max-height: 389px;
         border: 2px solid white;
         border-radius: 25px;
         background: var(--nav-color);
@@ -436,6 +440,11 @@ section.top-sellers{
         
     }
 
+    p>a{
+        color: var(--accent);
+        text-decoration: none;
+    }
+
 
     </style>
 </head>
@@ -443,10 +452,11 @@ section.top-sellers{
 <body>
 
     <div id="navbar">
-        <p>AMATERASU</p>
+        <p><a href="index.php">AMATERASU</a></p>
         <ul id="right-nav">
             <li><a href="/php/index.php">Home</a></li>
             <li><a href="">About</a></li>
             <li><a href="/php/sign-up.php">Sign-up</a></li>
+            <li><a href="/php/profile.php"><?php echo end($firstname)?? "Profile"?></a></li>
         </ul>
     </div>
