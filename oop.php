@@ -90,59 +90,59 @@ class UserValidator{
 }
 
 
-// class Forminput{
-//     public $data;
-//     public $errors=[];
-//     public static $fields=["name", "password"];
+class Logininput{
+    public $data;
+    public $errors=[];
+    public static $fields=["email", "password"];
 
-//     public function __construct($post_data)
-//     {
-//         $this->data=$post_data;
-//     }
+    public function __construct($post_data)
+    {
+        $this->data=$post_data;
+    }
 
-//     public function ValidateForm(){
-//         foreach (self::$fields as $field) {
-//             if(!array_key_exists($field,$this->data)){
-//                 trigger_error("$field not present in data" );
-//                 return;
-//             }
-//         }
-
-
-//         $this->ValidateName();
-//         $this->ValidatePassword();
-//         return $this->errors;
-//     }
+    public function ValidateForm(){
+        foreach (self::$fields as $field) {
+            if(!array_key_exists($field,$this->data)){
+                trigger_error("$field not present in data" );
+                return;
+            }
+        }
 
 
-//     public function ValidateName(){
-//         $var=trim($this->data["name"]);
-//         if(empty($var)){
-//             $this->addError("name", "name cannot be empty");
-//         }else{
-//             if(!preg_match('/^[a-zA-z]{2,50}$/',$var)){
-//                 $this->addError("name", "name must be aplhanumeric");
-//             }
-//         }
-//     }
+        $this->ValidateEmail();
+        $this->ValidatePassword();
+        return $this->errors;
+    }
 
 
-//     public function Validatepassword(){
-//         $var=trim($this->data["password"]);
-//         if(empty($var)){
-//             $this->addError("password", "password cannot be empty");
-//         }else{
-//             if(!preg_match('/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/' ,$var)){
-//                 $this->addError("password", "password must meet req");
-//             }
-//         }
-//     }
+    public function ValidateEmail(){
+        $var=trim($this->data["email"]);
+        if(empty($var)){
+            $this->addError("email", "name cannot be empty");
+        }else{
+            if(!filter_var($var,FILTER_VALIDATE_EMAIL)){
+                $this->addError("email", "email must be valid");   
+            };
+        }
+    }
 
 
-//     public function addError($key, $value){
-//         $this->errors[$key]=$value;
-//     }
-// }
+    public function Validatepassword(){
+        $var=trim($this->data["password"]);
+        if(empty($var)){
+            $this->addError("password", "password cannot be empty");
+        }else{
+            if(!preg_match('/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/' ,$var)){
+                $this->addError("password", "password must meet req");
+            }
+        }
+    }
+
+
+    public function addError($key, $value){
+        $this->errors[$key]=$value;
+    }
+}
 
 ?>
 

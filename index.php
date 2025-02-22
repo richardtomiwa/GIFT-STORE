@@ -1,12 +1,13 @@
 <?php
 //connect to db
 require("db_config/db_connect.php");
+require("templates/header.php"); 
+$username=$_SESSION["name"] ?? "guest";
+if(!isset($_SESSION["name"]) or $username=="guest"){
+}else{
+    $firstname=explode(" ", $_SESSION["name"]);
+}
 
-$sql="SELECT name,email FROM users";
-$result=mysqli_query($conn, $sql);
-$users=mysqli_fetch_all($result, MYSQLI_ASSOC);
-
- 
 
 ?>
 
@@ -18,7 +19,6 @@ $users=mysqli_fetch_all($result, MYSQLI_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-    <?php require("templates/header.php"); ?>
     <section class="season">
         <img src="assets/holidays-celebration-pretty-woman-celebrating-birthday-blowing-air-kiss-receive-gifts-flower.jpg"
             alt="" class="banner">
@@ -64,4 +64,5 @@ $users=mysqli_fetch_all($result, MYSQLI_ASSOC);
     </ul>
 
     </section>
+
     <?php require("templates/footer.php"); ?>
