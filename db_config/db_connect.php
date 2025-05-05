@@ -8,5 +8,6 @@ if(!$conn){
 
 //create your own database with users and products table
     //id, username, email, password for users table
-    //id, product_name, product_description, price, product_image, product_content
+    //id, prod_name, prod_desc, prod_price, prod_image, prod_content
+    //edit database connection settings too
 ?>
